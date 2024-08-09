@@ -83,6 +83,6 @@ st.set_page_config(layout="wide")
 with st.sidebar:
     tickers, prices = build_sidebar()
 
-st.title('Python para Investidore')
+st.title('Python para Investidores')
 if tickers:
     build_main(tickers, prices)
