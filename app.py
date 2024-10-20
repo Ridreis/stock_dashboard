@@ -23,13 +23,13 @@ def build_sidebar():
             prices.columns = [tickers[0].rstrip(".SA")]
                     
         prices.columns = prices.columns.str.rstrip(".SA")
-        prices['IBOV'] = yf.download("^IBOV.SA", start=start_date, end=end_date)["Adj Close"]
+        prices['IBOV'] = yf.download("^IBOV", start=start_date, end=end_date)["Adj Close"]
         return tickers, prices
     return None, None
 
 def build_main(tickers, prices):
     weights = np.ones(len(tickers))/len(tickers)
-    prices['portfolio'] = prices.drop("IBOV", axis=1) @ weights
+    prices['portfolio'] = prices.drop("^IBOV", axis=1) @ weights
     norm_prices = 100 * prices / prices.iloc[0]
     returns = prices.pct_change()[1:]
     vols = returns.std()*np.sqrt(252)
