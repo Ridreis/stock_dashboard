@@ -29,7 +29,7 @@ def build_sidebar():
 
 def build_main(tickers, prices):
     weights = np.ones(len(tickers))/len(tickers)
-    prices['portfolio'] = prices.drop("^IBOV", axis=1) @ weights
+    prices['portfolio'] = prices.drop("IBOV", axis=1) @ weights
     norm_prices = 100 * prices / prices.iloc[0]
     returns = prices.pct_change()[1:]
     vols = returns.std()*np.sqrt(252)
