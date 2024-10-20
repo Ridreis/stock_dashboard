@@ -23,7 +23,7 @@ def build_sidebar():
             prices.columns = [tickers[0].rstrip(".SA")]
                     
         prices.columns = prices.columns.str.rstrip(".SA")
-        prices['IBOV'] = yf.download("^IBOV", start=start_date, end=end_date)["Adj Close"]
+        prices['IBOV'] = yf.download("^BVSP", start=start_date, end=end_date)["Adj Close"]
         return tickers, prices
     return None, None
 
