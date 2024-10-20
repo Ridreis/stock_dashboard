@@ -13,7 +13,7 @@ def build_sidebar():
     ticker_list = pd.read_csv("tickers_ibra.csv", index_col=0)
     tickers = st.multiselect(label="Selecione as Empresas", options=ticker_list, placeholder='Códigos')
     tickers = [t+".SA" for t in tickers]
-    start_date = st.date_input("De", format="DD/MM/YYYY", value=datetime(2023,1,2))
+    start_date = st.date_input("De", format="DD/MM/YYYY", value=datetime(2024,1,2))
     end_date = st.date_input("Até", format="DD/MM/YYYY", value="today")
 
     if tickers:
@@ -23,7 +23,7 @@ def build_sidebar():
             prices.columns = [tickers[0].rstrip(".SA")]
                     
         prices.columns = prices.columns.str.rstrip(".SA")
-        prices['IBOV'] = yf.download("^IBOV", start=start_date, end=end_date)["Adj Close"]
+        prices['IBOV'] = yf.download("^IBOV.SA", start=start_date, end=end_date)["Adj Close"]
         return tickers, prices
     return None, None
 
